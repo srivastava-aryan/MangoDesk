@@ -31,7 +31,7 @@ export const SummaryGenerator: React.FC<SummaryGeneratorProps> = ({
     setError('');
 
     try {
-  const response = await fetch('http://localhost:3001/api/summary', {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/summary`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

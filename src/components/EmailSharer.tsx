@@ -48,7 +48,7 @@ export const EmailSharer: React.FC<EmailSharerProps> = ({ summary }) => {
     setMessage(null);
 
     try {
-  const response = await fetch('http://localhost:3001/api/send-email', {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
