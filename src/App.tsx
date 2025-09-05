@@ -25,7 +25,7 @@ function App() {
                 AI Meeting Summarizer
               </h1>
               <p className="text-gray-600 text-sm">
-                Upload transcripts, get AI-powered summaries using free models, and share with your team
+                Upload transcripts, get AI-powered summaries using free models, and share with your team.
               </p>
             </div>
           </div>
@@ -76,7 +76,7 @@ function App() {
 
       <footer className="mt-16 py-8 border-t bg-white">
         <div className="max-w-4xl mx-auto px-4 text-center text-gray-500 text-sm">
-          <p>AI-Powered Meeting Notes Summarizer - Built with React, TypeScript, and OpenRouter</p>
+          <p>AI-Powered Meeting Notes Summarizer.</p>
         </div>
       </footer>
     </div>
