@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FileText, Brain } from 'lucide-react';
+import { useState} from 'react';
+import { NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
 import { FileUploader } from './components/FileUploader';
 import { PromptInput } from './components/PromptInput';
 import { SummaryGenerator } from './components/SummaryGenerator';
@@ -12,71 +12,176 @@ function App() {
   const [summary, setSummary] = useState('');
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <FileText className="text-blue-600" size={28} />
-              <Brain className="text-green-600" size={28} />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Enhanced Header */}
+      <header className="relative bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200/60">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
+        <div className="relative max-w-5xl mx-auto px-6 py-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <div className="absolute inset-0 bg-blue-600/20 rounded-2xl blur-xl"></div>
+                <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg">
+                  <NotebookPen className="text-white" size={24} />
+                </div>
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  AI Meeting Summarizer
+                </h1>
+                <p className="text-gray-600 text-sm mt-1 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-blue-500" />
+                  Upload transcripts, get AI-powered summaries using free models, and share with your team
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                AI Meeting Summarizer
-              </h1>
-              <p className="text-gray-600 text-sm">
-                Upload transcripts, get AI-powered summaries using free models, and share with your team.
-              </p>
+            
+            {/* Status Indicator */}
+            <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-200">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-green-700 text-sm font-medium">AI Ready</span>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-8">
           
-          <div className="bg-white rounded-lg shadow-sm border p-6">
-            <FileUploader 
-              onTranscriptLoad={setTranscript} 
-              transcript={transcript}
-            />
+          {/* Step 1: File Upload */}
+          <div className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+            <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 hover:shadow-2xl transition-all duration-300">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg">
+                  <span className="text-blue-600 font-bold text-sm">1</span>
+                </div>
+                <h2 className="text-xl font-semibold text-gray-800">Upload Transcript</h2>
+                <ArrowRight className="w-5 h-5 text-gray-400" />
+              </div>
+              <FileUploader 
+                onTranscriptLoad={setTranscript} 
+                transcript={transcript}
+              />
+            </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border p-6">
-            <PromptInput 
-              prompt={prompt} 
-              onPromptChange={setPrompt}
-            />
+          {/* Step 2: Prompt Configuration */}
+          <div className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+            <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 hover:shadow-2xl transition-all duration-300">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center justify-center w-8 h-8 bg-indigo-100 rounded-lg">
+                  <span className="text-indigo-600 font-bold text-sm">2</span>
+                </div>
+                <h2 className="text-xl font-semibold text-gray-800">Customize Prompt</h2>
+                <ArrowRight className="w-5 h-5 text-gray-400" />
+              </div>
+              <PromptInput 
+                prompt={prompt} 
+                onPromptChange={setPrompt}
+              />
+            </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border p-6">
-            <SummaryGenerator
-              transcript={transcript}
-              prompt={prompt}
-              onSummaryGenerated={setSummary}
-            />
+          {/* Step 3: Generate Summary */}
+          <div className="group relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+            <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 hover:shadow-2xl transition-all duration-300">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center justify-center w-8 h-8 bg-purple-100 rounded-lg">
+                  <span className="text-purple-600 font-bold text-sm">3</span>
+                </div>
+                <h2 className="text-xl font-semibold text-gray-800">Generate AI Summary</h2>
+                <Sparkles className="w-5 h-5 text-purple-500" />
+              </div>
+              <SummaryGenerator
+                transcript={transcript}
+                prompt={prompt}
+                onSummaryGenerated={setSummary}
+              />
+            </div>
           </div>
 
+          {/* Enhanced Summary Display */}
           {summary && (
             <>
-              <div className="bg-white rounded-lg shadow-sm border p-6">
-                <SummaryEditor 
-                  summary={summary} 
-                  onSummaryChange={setSummary}
-                />
+              {/* Step 4: Edit Summary */}
+              <div className="group relative animate-in slide-in-from-bottom-4 duration-500">
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+                <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 hover:shadow-2xl transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-8 h-8 bg-emerald-100 rounded-lg">
+                      <span className="text-emerald-600 font-bold text-sm">4</span>
+                    </div>
+                    <h2 className="text-xl font-semibold text-gray-800">Review & Edit</h2>
+                    <ArrowRight className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <SummaryEditor 
+                    summary={summary} 
+                    onSummaryChange={setSummary}
+                  />
+                </div>
               </div>
 
-              <div className="bg-white rounded-lg shadow-sm border p-6">
-                <EmailSharer summary={summary} />
+              {/* Step 5: Share Summary */}
+              <div className="group relative animate-in slide-in-from-bottom-4 duration-700">
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+                <div className="relative bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 hover:shadow-2xl transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="flex items-center justify-center w-8 h-8 bg-orange-100 rounded-lg">
+                      <span className="text-orange-600 font-bold text-sm">5</span>
+                    </div>
+                    <h2 className="text-xl font-semibold text-gray-800">Share Summary</h2>
+                    <div className="flex-1"></div>
+                    <div className="px-3 py-1 bg-green-100 rounded-full">
+                      <span className="text-green-700 text-sm font-medium">Ready to Share</span>
+                    </div>
+                  </div>
+                  <EmailSharer summary={summary} />
+                </div>
               </div>
             </>
           )}
+
+          {/* Progress Indicator */}
+          <div className="flex justify-center mt-12">
+            <div className="flex items-center gap-2">
+              {[1, 2, 3, 4, 5].map((step) => (
+                <div
+                  key={step}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    step <= 3 || (step === 4 && summary) || (step === 5 && summary)
+                      ? 'bg-blue-500'
+                      : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </main>
 
-      <footer className="mt-16 py-8 border-t bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center text-gray-500 text-sm">
-          <p>AI-Powered Meeting Notes Summarizer.</p>
+      {/* Enhanced Footer */}
+      <footer className="relative mt-20 py-12 border-t border-gray-200/60">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-50 to-slate-50"></div>
+        <div className="relative max-w-5xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                <NotebookPen className="text-white" size={16} />
+              </div>
+              <span className="text-gray-600 font-medium">AI Meeting Summarizer</span>
+            </div>
+            <div>
+              <p className="text-gray-500 text-sm">
+                Built with ❤️. Powered by AI.
+              </p>
+              <p className="text-gray-400 text-xs mt-2">
+                &copy; {new Date().getFullYear()} AI Meeting Summarizer. All rights reserved.
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
