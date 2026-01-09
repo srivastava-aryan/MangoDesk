@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import { NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { FileUploader } from './components/FileUploader';

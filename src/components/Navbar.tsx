@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { NotebookPen, Menu, X, Sparkles } from 'lucide-react';
 
+const StatusIndicator = () => (
+  <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-200">
+    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+    <span className="text-green-700 text-sm font-medium">AI Ready</span>
+  </div>
+);
+
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -34,7 +41,7 @@ export const Navbar = () => {
                 AI Meeting Summarizer
               </h1>
               <p className="hidden sm:flex items-center gap-2 text-gray-600 text-xs mt-0.5">
-                <Sparkles className="w-3 h-3 text-blue-500" />
+                <Sparkles className="w-3 h-3 text-blue-500" aria-hidden="true" />
                 Powered by AI
               </p>
             </div>
@@ -54,10 +61,7 @@ export const Navbar = () => {
             ))}
             
             {/* Status Indicator */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-200">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-green-700 text-sm font-medium">AI Ready</span>
-            </div>
+            <StatusIndicator />
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,10 +99,7 @@ export const Navbar = () => {
             
             {/* Mobile Status Indicator */}
             <div className="px-3 py-2">
-              <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-200 w-fit">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-green-700 text-sm font-medium">AI Ready</span>
-              </div>
+              <StatusIndicator />
             </div>
           </div>
         </div>
