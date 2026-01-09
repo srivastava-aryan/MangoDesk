@@ -70,6 +70,7 @@ export const Navbar = () => {
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors"
               aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (
@@ -84,8 +85,8 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-200/60">
+        <div className="md:hidden" id="mobile-menu">
+          <nav className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-200/60" aria-label="Mobile navigation">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -101,7 +102,7 @@ export const Navbar = () => {
             <div className="px-3 py-2">
               <StatusIndicator />
             </div>
-          </div>
+          </nav>
         </div>
       )}
     </nav>
