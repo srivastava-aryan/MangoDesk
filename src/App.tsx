@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import { NotebookPen, Sparkles, ArrowRight } from 'lucide-react';
+import { Navbar } from './components/Navbar';
 import { FileUploader } from './components/FileUploader';
 import { PromptInput } from './components/PromptInput';
 import { SummaryGenerator } from './components/SummaryGenerator';
@@ -13,37 +14,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Enhanced Header */}
-      <header className="relative bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200/60">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-indigo-600/5"></div>
-        <div className="relative max-w-5xl mx-auto px-6 py-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="absolute inset-0 bg-blue-600/20 rounded-2xl blur-xl"></div>
-                <div className="relative flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-lg">
-                  <NotebookPen className="text-white" size={24} />
-                </div>
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                  AI Meeting Summarizer
-                </h1>
-                <p className="text-gray-600 text-sm mt-1 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-blue-500" />
-                  Upload transcripts, get AI-powered summaries using free models, and share with your team
-                </p>
-              </div>
-            </div>
-            
-            {/* Status Indicator */}
-            <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-200">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-green-700 text-sm font-medium">AI Ready</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Navbar */}
+      <Navbar />
 
       <main className="max-w-5xl mx-auto px-6 py-12">
         <div className="space-y-8">
