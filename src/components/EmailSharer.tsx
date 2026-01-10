@@ -60,7 +60,7 @@ export const EmailSharer: React.FC<EmailSharerProps> = ({ summary }) => {
         }),
       });
       if (!response.ok) {
-        throw new Error('Failed to send email');
+        throw new Error('Failed to send email-1');
       }
       setMessage({
         type: 'success',
@@ -69,7 +69,7 @@ export const EmailSharer: React.FC<EmailSharerProps> = ({ summary }) => {
       setRecipients(['']);
       setSubject('Meeting Summary');
     } catch (error) {
-      setMessage({ type: 'error', text: 'Failed to send email' });
+      setMessage({ type: 'error', text: 'Failed to send email-2' });
     } finally {
       setIsSending(false);
     }
