@@ -9,6 +9,13 @@ export default defineConfig({
   },
   build: {
     sourcemap: false,
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Suppress sourcemap warnings
+        if (warning.code === 'SOURCEMAP_ERROR') return;
+        warn(warning);
+      },
+    },
   },
   server: {
     sourcemapIgnoreList: () => false,
